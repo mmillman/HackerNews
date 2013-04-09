@@ -1,0 +1,10 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<a href="http://<%= @post.url %>">url</a>
+
+<ul>
+  <% @post.comments do |comment| %>
+  <li><%= comment.body %></li>
+  <% end %>
+</ul>
+

@@ -1,0 +1,27 @@
+<h1>New Post</h1>
+<%= form_for(@post) do |f| %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%= f.label :url %>
+  <%= f.text_field :url %><br>
+
+  <%= f.label :body %><br>
+  <%= f.text_area :body %><br>
+
+  <fieldset>
+    <legend>Comment</legend>
+  <%= f.fields_for(:comments) do |cf| %>
+    <%= cf.text_area :body %><br>
+
+    <%= cf.hidden_field :author_id, :value => current_user.id %>
+
+  <% end %>
+  </fieldset>
+
+  <%= f.hidden_field :author_id, :value => "#{current_user.id}" %>
+
+  <%= f.submit 'Create Post!' %>
+
+<% end %>
