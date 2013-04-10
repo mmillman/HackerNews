@@ -1,0 +1,15 @@
+<hr>
+
+<p><%= @comment.body %></p>
+
+<hr>
+
+<fieldset>
+  <legend>Add Comment</legend>
+  <%= form_for(@child_comment, url: comment_url(@comment), :method => 'post') do |f| %>
+    <%= f.text_area :body %><br>
+
+    <%= hidden_field_tag :parent_id, @comment.id %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</fieldset>

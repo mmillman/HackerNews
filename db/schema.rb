@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409185740) do
+ActiveRecord::Schema.define(:version => 20130409232035) do
+
+  create_table "comment_ancestries", :force => true do |t|
+    t.integer  "descendent_id"
+    t.integer  "ancestor_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "comment_ancestries", ["ancestor_id"], :name => "index_comment_ancestries_on_ancestor_id"
+  add_index "comment_ancestries", ["descendent_id"], :name => "index_comment_ancestries_on_descendent_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "author_id",  :null => false

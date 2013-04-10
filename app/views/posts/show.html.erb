@@ -2,9 +2,19 @@
 <p><%= @post.body %></p>
 <a href="http://<%= @post.url %>">url</a>
 
-<ul>
-  <% @post.comments do |comment| %>
-  <li><%= comment.body %></li>
+<fieldset>
+  <legend>Add Comment</legend>
+  <%= form_for(@comment) do |f| %>
+    <%= f.text_area :body %><br>
+
+    <%= f.hidden_field :post_id, :value => @post.id %>
+    <%= f.submit "Submit" %>
   <% end %>
-</ul>
+</fieldset>
+
+<ol>
+  <% @post.comments.each do |comment| %>
+    <li><%= link_to comment.body, comment_url(comment) %></li>
+  <% end %>
+</ol>
 
